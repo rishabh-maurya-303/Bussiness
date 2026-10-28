@@ -3,6 +3,7 @@ import {
     Phone,
     MapPin,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -56,39 +57,51 @@ function Footer() {
 
                         <ul className="mt-5 space-y-3 text-sm">
                             <li>
-                                <a
-                                    href="/"
+                                <Link to="/home"
                                     className="text-slate-500 transition hover:text-indigo-600"
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a
-                                    href="/services"
+                                <Link to="/services"
                                     className="text-slate-500 transition hover:text-indigo-600"
                                 >
                                     Services
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a
-                                    href="/about"
+                                <Link to="/bookings"
+                                    className="text-slate-500 transition hover:text-indigo-600"
+                                >
+                                    My Bookings
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link to="/about"
                                     className="text-slate-500 transition hover:text-indigo-600"
                                 >
                                     About Us
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a
-                                    href="/contact"
+                                <Link to="/contact"
                                     className="text-slate-500 transition hover:text-indigo-600"
                                 >
                                     Contact
-                                </a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/faq"
+                                    className="text-slate-500 transition hover:text-indigo-600"
+                                >
+                                    FAQs / Help Center
+                                </Link>
                             </li>
                         </ul>
                     </div>

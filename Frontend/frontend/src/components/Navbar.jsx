@@ -152,6 +152,30 @@ const Navbar = () => {
                   </>
                 )}
               </NavLink>
+
+              {/* FAQ */}
+              <NavLink
+                to="/faq"
+                className={({ isActive }) =>
+                  `relative py-2 text-sm font-medium transition-colors ${isActive
+                    ? "text-indigo-600"
+                    : "text-slate-500 hover:text-indigo-600"
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    FAQ
+
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-indigo-600 transition-all duration-200 ${isActive
+                        ? "scale-x-100 opacity-100"
+                        : "scale-x-0 opacity-0"
+                        }`}
+                    />
+                  </>
+                )}
+              </NavLink>
             </nav>
           </div>
 

@@ -43,15 +43,20 @@ const priceRanges = {
 function Services() {
 
     const [searchParams, setSearchParams] = useSearchParams();
+
     const [search, setSearch] = useState(
         searchParams.get("search") || ""
     );
 
-    const [category, setCategory] = useState("All Services");
+    const [category, setCategory] = useState(
+        searchParams.get("category") || "All Services"
+    );
+
     const [selectedPrices, setSelectedPrices] = useState([]);
     const [sortBy, setSortBy] = useState("popular");
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
+    
     /*
      * Price filter
      */

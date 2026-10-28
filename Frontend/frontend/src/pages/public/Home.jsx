@@ -16,12 +16,14 @@ import {
 
 import { Button } from "@/components/ui/button";
 import ServiceCategoryCard from "@/components/home/ServiceCategoryCard";
-import ServiceCard from "@/components/ServiceCard";
+import ServiceCard from "@/components/home/ServiceCard";
 import HowItWorks from "@/components/home/HowItWorks";
 import WhatsAppCTA from "@/components/home/WhatsAppCTA";
 import TrustStat from "@/components/home/TrustStats";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { services } from "@/data/services";
+import { Link } from "react-router-dom";
 
 const categories = [
     {
@@ -59,42 +61,6 @@ const categories = [
         title: "Tent & Event Setup",
         description: "Complete arrangements for local events.",
         serviceCount: "7",
-    },
-];
-
-const services = [
-    {
-        image:
-            "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85",
-        category: "Wedding & Events",
-        title: "DJ & Sound System",
-        description:
-            "Professional DJ, powerful sound system and complete music setup for weddings and events.",
-        rating: "4.9",
-        location: "Local Area",
-        price: "₹5,000",
-    },
-    {
-        image:
-            "https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=1000&q=85",
-        category: "Decoration",
-        title: "Wedding Decoration",
-        description:
-            "Beautiful wedding stage, mandap and venue decoration designed for your special occasion.",
-        rating: "4.8",
-        location: "Local Area",
-        price: "₹8,000",
-    },
-    {
-        image:
-            "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1000&q=85",
-        category: "Wedding & Events",
-        title: "Stage & Mandap Setup",
-        description:
-            "Elegant stage and mandap arrangements for weddings and special celebrations.",
-        rating: "4.9",
-        location: "Local Area",
-        price: "₹10,000",
     },
 ];
 
@@ -288,7 +254,7 @@ function Home() {
             </section>
 
             {/* =====================================================
-          CATEGORIES
+          CATEGORIES - Explore services
       ====================================================== */}
             <section className="bg-white py-24">
 
@@ -330,12 +296,21 @@ function Home() {
                     />
 
                     <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+
                         {services.map((service) => (
                             <ServiceCard
-                                key={service.title}
-                                {...service}
+                                key={service.id}
+                                id={service.id}
+                                image={service.image}
+                                category={service.category}
+                                title={service.title}
+                                description={service.description}
+                                rating={service.rating}
+                                location={service.location}
+                                price={service.price}
                             />
                         ))}
+
                     </div>
 
                 </div>
@@ -431,10 +406,12 @@ function Home() {
 
                             </div>
 
-                            <Button className="mt-9 rounded-xl bg-indigo-600 px-6 hover:bg-indigo-700 cursor-pointer">
+                            <Link to="/services">
+                                <Button className="mt-9 rounded-xl bg-indigo-600 px-6 hover:bg-indigo-700 cursor-pointer">
                                 Explore Local Services
                                 <ArrowRight className="ml-2 h-4 w-4" />
                             </Button>
+                            </Link>
 
                         </div>
                     </div>

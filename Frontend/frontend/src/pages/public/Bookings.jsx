@@ -60,9 +60,9 @@ function Bookings() {
         filter === "All"
             ? bookings
             : bookings.filter(
-                  (booking) =>
-                      booking.status?.toLowerCase() === filter.toLowerCase()
-              );
+                (booking) =>
+                    booking.status?.toLowerCase() === filter.toLowerCase()
+            );
 
     const filters = ["All", "Pending", "Confirmed", "Completed", "Rejected"];
 
@@ -140,11 +140,10 @@ function Bookings() {
                                 key={item}
                                 type="button"
                                 onClick={() => setFilter(item)}
-                                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                                    filter === item
+                                className={`rounded-full px-4 py-2 text-sm font-medium transition ${filter === item
                                         ? "bg-indigo-600 text-white"
                                         : "border border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:text-indigo-600"
-                                }`}
+                                    }`}
                             >
                                 {item}
                             </button>
@@ -296,15 +295,13 @@ function Bookings() {
                                                 </p>
                                             </div>
 
-                                            {service && (
-                                                <Link
-                                                    to={`/services/${service.id}`}
-                                                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-600"
-                                                >
-                                                    View Service
-                                                    <ArrowRight className="h-4 w-4" />
-                                                </Link>
-                                            )}
+                                            <Link
+                                                to={`/bookings/${booking.id}`}
+                                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:text-indigo-600"
+                                            >
+                                                View Details
+                                                <ArrowRight className="h-4 w-4" />
+                                            </Link>
                                         </div>
 
                                         {booking.notes && (
@@ -320,12 +317,12 @@ function Bookings() {
 
                                         {booking.status?.toLowerCase() ===
                                             "pending" && (
-                                            <p className="mt-4 text-sm leading-6 text-amber-700">
-                                                Your request is awaiting review.
-                                                The team will check availability
-                                                before confirming.
-                                            </p>
-                                        )}
+                                                <p className="mt-4 text-sm leading-6 text-amber-700">
+                                                    Your request is awaiting review.
+                                                    The team will check availability
+                                                    before confirming.
+                                                </p>
+                                            )}
                                     </div>
                                 </div>
                             </article>

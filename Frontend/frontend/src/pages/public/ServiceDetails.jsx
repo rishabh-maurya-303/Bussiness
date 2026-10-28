@@ -11,23 +11,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { services } from "@/data/services";
 
+
 function ServiceDetails() {
+
     const { id } = useParams();
 
     const service = services.find(
         (item) => String(item.id) === String(id)
     );
 
-    const whatsappMessage = encodeURIComponent(
-        `Hello LocalSeva! I am interested in ${service.title}.
-Starting price: ${service.price}
-Location: ${service.location}
-
-Please share more details and availability.`
-    );
-
-    const whatsappUrl = `https://wa.me/919795297758?text=${whatsappMessage}`;
-
+    // Check first, before accessing service properties
     if (!service) {
         return (
             <section className="flex min-h-[70vh] items-center justify-center px-6">
@@ -41,11 +34,10 @@ Please share more details and availability.`
                     </h1>
 
                     <p className="mx-auto mt-4 max-w-lg text-slate-500">
-                        The service you're looking for may have been removed or the
-                        link may be incorrect.
+                        The service may have been removed or the link may be incorrect.
                     </p>
 
-                    <Link to="/services" className="inline-block mt-7">
+                    <Link to="/services" className="mt-7 inline-block">
                         <Button className="rounded-xl bg-indigo-600 hover:bg-indigo-700">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Services
@@ -55,6 +47,22 @@ Please share more details and availability.`
             </section>
         );
     }
+
+    // Safe to access service properties after the check
+    const whatsappMessage = encodeURIComponent(
+        `Hello LocalSeva! I am interested in ${service.title}.
+Starting price: ${service.price}
+Location: ${service.location}
+
+Please share more details and availability.`
+    );
+
+    const whatsappUrl =
+        `https://wa.me/919795297758?text=${whatsappMessage}`;
+
+    // Keep your existing return (...) for the service details page below
+
+
 
     return (
         <div className="bg-white">

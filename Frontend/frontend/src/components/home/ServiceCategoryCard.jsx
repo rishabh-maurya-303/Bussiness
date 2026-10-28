@@ -7,6 +7,10 @@ import {
   Zap,
   ArrowUpRight,
 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import { useMemo } from "react";
+import { services } from "@/data/services";
+import { Link } from "react-router-dom";
 
 const iconMap = {
   wedding: Heart,
@@ -22,12 +26,28 @@ function ServiceCategoryCard({
   title,
   description,
   serviceCount,
+  categories,
 }) {
   const Icon = iconMap[icon];
+  const [searchParams, setSearchParams] = useSearchParams();
+
+const selectedCategory = searchParams.get("category") || "All";
+
+const filteredServices = useMemo(() => {
+  if (selectedCategory === "All") {
+    return services;
+  }
+
+  return services.filter(
+    (service) => service.category === selectedCategory
+  );
+}, [selectedCategory]);
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl">
-
+ <Link
+       to={`/services?category=${encodeURIComponent(title)}`}
+      className="group relative block overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl"
+    >
       {/* Decorative background */}
       <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-indigo-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -66,7 +86,7 @@ function ServiceCategoryCard({
         </div>
 
       </div>
-    </div>
+    </Link>
   );
 }
 
